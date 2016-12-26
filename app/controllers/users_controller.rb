@@ -11,15 +11,22 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    ###### final?
     if @user.save
+      log_in @user
       flash[:success] = "Welcome to the Sample App!"
-#     flash[:info] = "Welcome to the Sample App!"
-#     flash[:warning] = "Welcome to the Sample App!"
-#     flash[:danger] = "Welcome to the Sample App!"
       redirect_to @user # Handle a successful save. Equals:     redirect_to user_url(@user)
     else
       render 'new'
     end
   end
+
+  # def destroy               # это дестрой из sessions. Нужен ли какой-нибудь дестрой в users?
+  #   log_out
+  #   redirect_to root_url
+  # end
+
+
+
+
 
 
 
