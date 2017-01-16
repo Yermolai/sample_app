@@ -7,14 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+##  rails db:migrate:reset
+##  rails db:seed
 
-User.create!(name:  "Example User",
-    email: "example@railstutorial.org",
-    password:              "foobar",
-    password_confirmation: "foobar",
+User.create!(name:  "Admin ",
+    email: "admin@admin.com",
+    password:              "123456",
+    password_confirmation: "123456",
     admin:  true)
 
-User.create!(name:  "q",
+User.create!(name:  "John Walk",
     email: "q@q.q",
     password:              "123456",
     password_confirmation: "123456",
@@ -22,7 +24,7 @@ User.create!(name:  "q",
 
 99.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@goodforyou.org"
   password = "password"
   User.create!(name:  name,
       email: email,
@@ -33,14 +35,15 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do
-  content = Faker::ChuckNorris.fact[1..139]
+  content = Faker::ChuckNorris.fact[0..139]
   users.each { |user| user.microposts.create!(content: content) }
 end
 
-(1..5).to_a.each do |user_id|
-                    User.find_by_id(user_id).microposts.create!(content: "BITCH: " + Faker::StarWars.quote)
-                 end
-User.find_by_name("q").microposts.create!(content: "волков бояться - нахуй идти")
+(4..10).to_a.each do |user_id|
+                    User.find_by_id(user_id).microposts.create!(content: "An old man said: " + Faker::StarWars.quote)
+end
+
+User.find_by_email("q@q.q").microposts.create!(content: "волков бояться - нахуй идти")
 
 # Following relationships
 users = User.all
