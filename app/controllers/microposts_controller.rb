@@ -19,10 +19,18 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def tag_feed
+    if logged_in?
+      @micropost  = current_user.microposts.build
+      @feed_items = Micropost.tagged_with(params[:tag]).paginate(page: params[:page])
+      render 'static_pages/home'
+    end
+  end
+
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content, :picture)
+    params.require(:micropost).permit(:content,:tag_list, :picture)         ### TAGS
   end
 
   def correct_user

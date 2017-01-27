@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   #  resources :password_resets,     only: [:new, :create, :edit, :update]
 
   resources :microposts,          only: [:create, :destroy]
+  get 'tags/:tag', to: 'microposts#tag_feed', as: 'tag'
+
   resources :relationships,       only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
