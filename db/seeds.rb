@@ -14,13 +14,19 @@ User.create!(name:  "Admin ",
     email: "admin@admin.com",
     password:              "123456",
     password_confirmation: "123456",
-    admin:  true)
+    admin:  true,
+    activated: true,
+    activated_at: Time.zone.now)
+
 
 User.create!(name:  "John Walk",
     email: "q@q.q",
     password:              "123456",
     password_confirmation: "123456",
-    admin:  true)
+    admin:  true,
+    activated: true,
+    activated_at: Time.zone.now)
+
 
 99.times do |n|
   name  = Faker::Name.name
@@ -29,7 +35,9 @@ User.create!(name:  "John Walk",
   User.create!(name:  name,
       email: email,
       password:              password,
-      password_confirmation: password)
+      password_confirmation: password,
+      activated: true,
+      activated_at: Time.zone.now)
 end
 
 
@@ -43,7 +51,7 @@ end
                     User.find_by_id(user_id).microposts.create!(content: "An old man said: " + Faker::StarWars.quote)
 end
 
-User.find_by_email("q@q.q").microposts.create!(content: "волков бояться - нахуй идти")
+User.find_by_email("q@q.q").microposts.create!(content: "волков бояться - никуда не идти")
 
 # Following relationships
 users = User.all
